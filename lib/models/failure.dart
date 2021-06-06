@@ -1,5 +1,5 @@
-class Failure {
+class BTError {
   final String message;
 
-  const Failure({required this.message});
+  const BTError({required this.message});
 }

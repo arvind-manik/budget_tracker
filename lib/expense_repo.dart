@@ -29,17 +29,17 @@ class ExpenseRepository {
 
       if (response.statusCode == HttpStatus.ok) {
         final data = jsonDecode(response.body) as Map<String, dynamic>;
-        return (data[APIKeys.RESULTS] as List)
+        return (data[BTAPIKeys.RESULTS] as List)
             .map((entry) => ExpenseEntry.fromMap(entry))
             .toList()
               ..sort((entryOne, entryTwo) =>
                   entryTwo.getDate().compareTo(entryOne.getDate()));
       } else {
-        throw const Failure(message: Resource.REQUEST_FAILURE);
+        throw const BTError(message: BTResource.REQUEST_FAILURE);
       }
     } catch (_e, stackTrace) {
       print(stackTrace);
-      throw const Failure(message: Resource.GENERIC_FAILURE);
+      throw const BTError(message: BTResource.GENERIC_FAILURE);
     }
   }
 }

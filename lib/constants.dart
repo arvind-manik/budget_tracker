@@ -14,7 +14,7 @@ class BTUI {
   //BORDER
 }
 
-class APIKeys {
+class BTAPIKeys {
   static const String RESULTS = 'results';
   static const String PROPERTIES = 'properties';
   static const String NAME_TC = 'Name';
@@ -30,7 +30,7 @@ class APIKeys {
   static const String TITLE = 'title';
 }
 
-class Resource {
+class BTResource {
   //ERRORS
   static const String GENERIC_FAILURE = 'Something went terribly wrong!';
   static const String REQUEST_FAILURE =

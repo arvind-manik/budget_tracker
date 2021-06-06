@@ -18,19 +18,20 @@ class ExpenseEntry {
         _dateTime = dateTime;
 
   factory ExpenseEntry.fromMap(Map<String, dynamic> entryData) {
-    final properties = entryData[APIKeys.PROPERTIES] as Map<String, dynamic>;
-    final dateString = properties[APIKeys.DATE_TC]?[APIKeys.DATE]
-            ?[APIKeys.START] ??
-        Resource.FALLBACK_QMARK;
+    final properties = entryData[BTAPIKeys.PROPERTIES] as Map<String, dynamic>;
+    final dateString = properties[BTAPIKeys.DATE_TC]?[BTAPIKeys.DATE]
+            ?[BTAPIKeys.START] ??
+        BTResource.FALLBACK_QMARK;
 
     return ExpenseEntry(
-        name: properties[APIKeys.NAME_TC]?[APIKeys.TITLE]?[0]
-                ?[APIKeys.PLAIN_TEXT] ??
-            Resource.FALLBACK_QMARK,
-        category: properties[APIKeys.CATEGORY_TC]?[APIKeys.SELECT]
-                ?[APIKeys.NAME] ??
-            Resource.FALLBACK_UNKNOWN,
-        price: (properties[APIKeys.PRICE_TC]?[APIKeys.NUMBER] ?? 0).asDouble(),
+        name: properties[BTAPIKeys.NAME_TC]?[BTAPIKeys.TITLE]?[0]
+                ?[BTAPIKeys.PLAIN_TEXT] ??
+            BTResource.FALLBACK_QMARK,
+        category: properties[BTAPIKeys.CATEGORY_TC]?[BTAPIKeys.SELECT]
+                ?[BTAPIKeys.NAME] ??
+            BTResource.FALLBACK_UNKNOWN,
+        price:
+            (properties[BTAPIKeys.PRICE_TC]?[BTAPIKeys.NUMBER] ?? 0).asDouble(),
         dateTime:
             dateString != null ? DateTime.parse(dateString) : DateTime.now());
   }
