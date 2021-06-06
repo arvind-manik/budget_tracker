@@ -36,9 +36,7 @@ class ExpenseEntry {
             dateString != null ? DateTime.parse(dateString) : DateTime.now());
   }
 
-  static Color getBGColor(ExpenseEntry entry) {
-    String category = entry.getCategory();
-
+  static Color getBGColor(String category) {
     switch (category) {
       case 'Electronics':
         return Colors.blue[200]!;
@@ -73,16 +71,17 @@ class ExpenseEntry {
       case 'BDSM Returns':
         return Colors.black26;
 
+      case 'Subscription':
+        return Colors.red;
+
       default:
         return Colors.grey[500]!;
     }
   }
 
-  static Color getTextColor(ExpenseEntry entry) {
+  static Color getTextColor(String category) {
     const lightBGCategories = ['Electronics', 'Food', 'Health', 'Unknown'];
-    return lightBGCategories.contains(entry.getCategory())
-        ? Colors.black
-        : Colors.white;
+    return lightBGCategories.contains(category) ? Colors.black : Colors.white;
   }
 
   String getName() {

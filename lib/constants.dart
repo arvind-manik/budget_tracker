@@ -5,13 +5,22 @@ class BTConstants {
 }
 
 class BTUI {
-  //MARGINS
-  static const EdgeInsets margin2 = const EdgeInsets.all(8.0);
+  //EDGE INSETS
+  static const EdgeInsets edge8 = const EdgeInsets.all(8.0);
+  static const EdgeInsets edge16 = const EdgeInsets.all(16.0);
 
   //BORDER RADIUS
   static final BorderRadius radius10 = BorderRadius.circular(10.0);
 
-  //BORDER
+  //1D VALUES
+  static const double PIE_CHART_HEIGHT = 360.0;
+  static const double PIE_CHART_RADIUS = 100.0;
+  static const double PIE_CHART_SPACE = 4.0;
+  static const double PIE_CHART_FONT_SIZE = 12.0;
+
+  static const double SECTION_MARGIN = 20.0;
+  static const double LEGEND_SPACING = 8.0;
+  static const double LEGEND_SIZE = 16.0;
 }
 
 class BTAPIKeys {
