@@ -4,6 +4,7 @@ import 'package:budget_tracker/models/expense_entry.dart';
 import 'package:budget_tracker/models/failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:intl/intl.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
@@ -18,17 +19,17 @@ class BaseApp extends StatelessWidget {
       title: 'Spendee',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.white),
-      home: Budgeter(),
+      home: ExpenseList(),
     );
   }
 }
 
-class Budgeter extends StatefulWidget {
+class ExpenseList extends StatefulWidget {
   @override
-  _BudgeterState createState() => _BudgeterState();
+  _ExpenseListState createState() => _ExpenseListState();
 }
 
-class _BudgeterState extends State<Budgeter> {
+class _ExpenseListState extends State<ExpenseList> {
   late Future<List<ExpenseEntry>> _expenses;
 
   @override
@@ -52,20 +53,31 @@ class _BudgeterState extends State<Budgeter> {
                 itemBuilder: (BuildContext context, int index) {
                   final entry = expenseEntries?[index];
                   if (entry != null) {
+                    final Color entryBGColor = ExpenseEntry.getBGColor(entry);
+                    final Color entryTextColor =
+                        ExpenseEntry.getTextColor(entry);
+
                     return Container(
-                      margin: BTUI.margin2,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BTUI.radius10,
-                          border: Border.all(
-                              width: 2.0, color: ExpenseEntry.getColor(entry)),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(0, 2),
-                                blurRadius: 6.0)
-                          ]),
-                    );
+                        margin: BTUI.margin2,
+                        decoration: BoxDecoration(
+                            color: entryBGColor,
+                            borderRadius: BTUI.radius10,
+                            border: Border.all(width: 2.0, color: entryBGColor),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(0, 2),
+                                  blurRadius: 6.0)
+                            ]),
+                        child: ListTile(
+                            title: Text(entry.getName(),
+                                style: TextStyle(color: entryTextColor)),
+                            subtitle: Text(
+                                '${entry.getCategory()} • ${DateFormat.yMd().format(entry.getDate())}',
+                                style: TextStyle(color: entryTextColor)),
+                            trailing: Text(
+                                '-₹${entry.getPrice().toStringAsFixed(2)}',
+                                style: TextStyle(color: entryTextColor))));
                   } else {
                     return Container(child: Text('Unknown entry'));
                   }

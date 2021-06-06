@@ -31,12 +31,12 @@ class ExpenseEntry {
                 ?[BTAPIKeys.NAME] ??
             BTResource.FALLBACK_UNKNOWN,
         price:
-            (properties[BTAPIKeys.PRICE_TC]?[BTAPIKeys.NUMBER] ?? 0).asDouble(),
+            (properties[BTAPIKeys.PRICE_TC]?[BTAPIKeys.NUMBER] ?? 0).toDouble(),
         dateTime:
             dateString != null ? DateTime.parse(dateString) : DateTime.now());
   }
 
-  static Color getColor(ExpenseEntry entry) {
+  static Color getBGColor(ExpenseEntry entry) {
     String category = entry.getCategory();
 
     switch (category) {
@@ -76,6 +76,13 @@ class ExpenseEntry {
       default:
         return Colors.grey[500]!;
     }
+  }
+
+  static Color getTextColor(ExpenseEntry entry) {
+    const lightBGCategories = ['Electronics', 'Food', 'Health', 'Unknown'];
+    return lightBGCategories.contains(entry.getCategory())
+        ? Colors.black
+        : Colors.white;
   }
 
   String getName() {
