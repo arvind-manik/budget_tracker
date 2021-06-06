@@ -48,4 +48,7 @@ class BTResource {
   //UI RESOURCES
   static const String FALLBACK_QMARK = '?';
   static const String FALLBACK_UNKNOWN = 'Unknown';
+
+  //TOOLTIP
+  static const String ADD_TRANSACTION = "Add transaction";
 }

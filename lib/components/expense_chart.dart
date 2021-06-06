@@ -21,6 +21,8 @@ class ExpenseChart extends StatelessWidget {
         elevation: 2.0,
         shape: RoundedRectangleBorder(borderRadius: BTUI.radius10),
         child: Container(
+            decoration:
+                BoxDecoration(color: Theme.of(context).primaryColorLight),
             padding: BTUI.edge16,
             height: BTUI.PIE_CHART_HEIGHT,
             child: Column(children: [
