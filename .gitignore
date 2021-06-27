@@ -195,6 +195,7 @@ lib/generated_plugin_registrant.dart
 
 ### VisualStudioCode ###
 .vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

@@ -19,7 +19,7 @@ class ExpenseRepository {
   Future<List<ExpenseEntry>> getEntries() async {
     try {
       final apiUrl =
-          '${BTConstants.BASE_URL}databases/${dotenv.env['NOTION_DB_ID']}/query';
+          '${BTConstants.BASE_URL}/databases/${dotenv.env['NOTION_DB_ID']}/query';
 
       final response = await _client.post(Uri.parse(apiUrl), headers: {
         HttpHeaders.authorizationHeader:
@@ -38,7 +38,7 @@ class ExpenseRepository {
         throw const BTError(message: BTResource.REQUEST_FAILURE);
       }
     } catch (_e, stackTrace) {
-      print(stackTrace);
+      print('$_e \n $stackTrace');
       throw const BTError(message: BTResource.GENERIC_FAILURE);
     }
   }

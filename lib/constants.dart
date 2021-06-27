@@ -1,7 +1,7 @@
 import 'package:flutter/rendering.dart';
 
 class BTConstants {
-  static const String BASE_URL = 'https://api.notion.com/v1/';
+  static const String BASE_URL = 'https://api.notion.com/v1';
 }
 
 class BTUI {
